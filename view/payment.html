@@ -1,0 +1,174 @@
+<!--create a payment page that will show the payment form and the payment status.
+The payment form should have the following fields:
+- card number
+- card holder
+- expiration date
+- security code
+- amount
+
+The payment status should show the following information:
+- payment id
+- payment status
+- payment amount
+
+The payment status should be updated after the payment is processed.
+
+The payment form should be submitted to the /payment endpoint.
+
+The payment status should be displayed on the /payment endpoint.-->
+{% extends 'index.html' %}
+
+{% block head %}
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+    
+        .payment-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f8f8;
+            padding: 2rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #f8f8f8;
+            padding: 2rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .details ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .details li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .payment-form label {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .payment-form input {
+            font-size: 1.1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            width: 50%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+            align-self: center;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+        margin-top: 1rem;
+        }
+
+        .button-container input[type="submit"] {
+        width: 100%;
+        }
+
+        .cancel-button {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #f44336;
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        .cancel-button:hover {
+        background-color: #d32f2f;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <h1>Payment</h1>
+    <div class="container">
+        <div class="details">
+            <ul>
+                <li>Transaction ID: {{ transaction_id }}</li>
+                <li>Item ID: {{ item_id }}</li>
+                <li>Renter ID: {{ renter_id }}</li>
+                <li>Rentee ID: {{ rentee_id }}</li>
+                <li>Name: {{ item.item_name }}</li>
+                <li>Description: {{ item.description }}</li>
+                <li>Rating: {{ item.item_rating }}</li>
+                <li>Brand: {{ item.brand }}</li>
+                <li>Category: {{ item.category }}</li>
+                <li>Start Date: {{ start_date }}</li>
+                <li>End Date: {{ end_date }}</li>
+                <li>Collection point: {{ item.collection_point }}</li>
+                <li>Total Amount: {{ amount }}</li>
+                <li>Payment Type: Card</li>
+            </ul>
+        </div>
+        <div class="payment-form">
+            <form method="POST">
+                <label for="card_number">Card number:</label><br>
+                <input type="text" id="card_number" name="card_number" required><br>
+                <label for="card_holder">Card holder:</label><br>
+                <input type="text" id="card_holder" name="card_holder" required><br>
+                <label for="expiration_date">Expiration date:</label><br>
+                <input type="text" id="expiration_date" name="expiration_date" required><br>
+                <label for="security_code">Security code:</label><br>
+                <input type="text" id="security_code" name="security_code" required><br>
+                <div class="button-container">
+                    <input type="submit" value="Pay">
+                    <a href="{{ url_for('dashboard') }}" class="cancel-button">Cancel</a>
+                </div>
+            </form>
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+
+

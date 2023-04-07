@@ -1,0 +1,110 @@
+<!--
+    create a transactions button that will lead to the transactions page that will show all the transactions in the database of that particular user.
+    The transactions should be displayed in a table with the following columns:
+    - transaction id
+    - transaction payment type
+    - transaction rentee id
+    - transaction renter id
+    - transaction total paid
+    - transaction currency
+    - transaction status
+
+    The transactions will get the data from the rented_items table in the database.
+    The transactions page should be able to filter the transactions by the following:
+    - transaction id
+    - transaction payment type
+    - transaction rentee id
+    - transaction renter id
+    - transaction status
+    that is all the columns in the table.
+    The transactions page should also be able to sort the transactions by the following:
+    - transaction id
+    - transaction payment type
+    - transaction rentee id
+    - transaction renter id
+    - transaction total paid
+    - transaction currency
+    - transaction status
+-->
+
+{% extends 'index.html' %}
+{% block head %}
+    <title>Transactions History - Rentronics</title>
+{% endblock %}
+{% block body %}
+    <div style="align-items: center; justify-content: center;">
+        <h1>Transactions (Items Rented)</h1>
+        <table>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Payment Type</th>
+                <th>Rented From</th>
+                <th>Total Amount</th> 
+            </tr>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.transaction_id }}</td>
+                    <td>{{ transaction.payment_type }}</td>
+                    <td>{{ transaction.renter_id }}</td>
+                    <td>{{ transaction.total_paid }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br> 
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br> 
+        <h1>Transactions (Items Rented Out)</h1>
+        <table>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Payment Type</th>
+                <th>Rented To</th>
+                <th>Total Amount</th> 
+            </tr>
+            {% for transaction in trans_out %}
+                <tr>
+                    <td>{{ transaction.transaction_id }}</td>
+                    <td>{{ transaction.payment_type }}</td>
+                    <td>{{ transaction.rentee_id }}</td>
+                    <td>{{ transaction.total_paid }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </form>
+        <br>
+        {% if sum %}
+            <p style="text-align: center;"> Total Amount Paid: {{ sum[0] }}</p>
+        {% endif %}
+        {% if revenue %}
+        <p style="text-align: center;"> Total Amount Earned: {{ revenue[0] }}</p>
+        {% endif %}
+        
+        <form action="{{ url_for('dashboard') }}">
+            <input type="submit" value="Back to Dashboard">
+        </form>
+    </div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,8 @@
+psycopg2
+Flask
+flask_cors
+sqlalchemy_utils
+flask
+flask-login
+SQLAlchemy == 1.4.46
+flask_sqlalchemy

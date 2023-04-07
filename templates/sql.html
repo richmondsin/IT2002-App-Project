@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block head %}
+    <title>Execute SQL Code</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <h1>Execute SQL Code</h1>
+    <form method="POST">
+        <label for="sql">Enter your SQL code:</label><br>
+        <textarea id="sql" name="sql" rows="10" cols="50"></textarea><br>
+        <input type="submit" value="Execute">
+    </form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <form action="{{ url_for('login') }}">
+        <input type="submit" value="Back to Login">
+    </form>
+{% endblock %}

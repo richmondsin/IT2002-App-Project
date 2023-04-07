@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block head %}
+    <title>LIST AN ITEM FOR OTHERS TO RENT</title>
+{% endblock %}
+
+
+{% block body %}
+    <div style="align-items: center; justify-content: center;">
+
+        <h1>Enter details about your item for rent</h1>
+        <form method="POST">
+            <label>Item name:</label>
+            <input type="text" name="name" required><br><br>
+            <label>Short description (80 characters):</label>
+            <input type="text" name="description"><br><br>
+            <label>Brand:</label>
+            <input type="text" name="brand" required><br><br>
+            <label>Category:</label>
+            <input type="text" name="category" required><br><br>
+            <label>Rental per day: $</label>
+            <input type="Number" name="rate" required><br><br>
+            <label>Collection point:</label>
+            <input type="text" name="collection" required><br><br>
+            <input type="submit" value="Post it!">
+        </form>
+        <br>
+        <form action="{{ url_for('dashboard') }}">
+            <input type="submit" value="Back to Dashboard">
+        </form>
+    </div>
+
+{% endblock %}

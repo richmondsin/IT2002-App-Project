@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block head %}
+    <title>Item Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/item_details.css') }}">
+{% endblock %}
+
+{% block body %}
+    <h1>Item Details</h1>
+    <div style = "display: flex;align-items: center; justify-content: center;">
+        <ul>
+            <li>ID: {{ item.item_id }}</li>
+            <li>Name: {{ item.item_name }}</li>
+            <li>Description: {{ item.description }}</li>
+            <li>Rating: {{ item.item_rating }}</li>
+            <li>Brand: {{ item.brand }}</li>
+            <li>Category: {{ item.category }}</li>
+            <li>Rate per day: {{ item.rate_per_day }}</li>
+            <li>Collection point: {{ item.collection_point }}</li>
+        </ul>
+    </div>
+
+
+    <form method="POST">
+        <label for="days">Number of Days to Rent:</label>
+        <input type="number" id="day" name="day" min="1" max="30" required>
+        <input type="submit" value="Rent">
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form action="{{ url_for('dashboard') }}">
+        <input type="submit" value="Back to Dashboard">
+    </form>
+{% endblock %}

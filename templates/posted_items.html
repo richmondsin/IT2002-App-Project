@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+
+{% block head %}
+    <title>Items that you have rented out</title>
+{% endblock %}
+
+create a page that will show all the items that the user has posted for rent. Item ID, Name, Description, Price, Rentee, Rental Period, Payment Type, Total Paid
+
+{% block body %}
+    <div style="align-items: center; justify-content: center;">
+        <h1>History for items you have rented out</h1>
+
+        <form method="POST">
+            <label>Items rated less than: </label>
+            <input type="number" name="item_rating">
+            <label>stars</label>
+            <input type="submit" value="search">
+        </form>
+        <table>
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Person you rented to</th>
+                <th>Rental Period</th>
+                <th>Returned</th>
+                <th>Most Recent Rating</th>
+            </tr>
+            {% for item in posted_items %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[9] }}</td>
+                <td>{{ item[17] }} {{ item[18] }}</td>
+                <td>{% if item.start_date and item.end_date %}{{ item.start_date }} - {{ item.end_date }}{% else %}-{% endif %}</td>
+                <td>{{ item[16] }}</td>
+                <td>{{ item[5] }}</td>
+            </tr>
+        {% endfor %}  
+        </table>
+        <br>
+        <br>
+        <br>    
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br> 
+        <form action="{{ url_for('dashboard') }}">
+            <input type="submit" value="Back to Dashboard">
+        </form>
+    </div>
+{% endblock %}

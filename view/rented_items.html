@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<title> My Rented Items</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/rent.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class = "content">
+    <h1>My Rented Items</h1>
+    <table>
+        <tr>
+            <th>RENTAL ID</th>
+            <th>ITEM ID</th>
+            <th>RENTER ID</th>
+            <th>RENTEE ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Returned</th>
+            <th>Action</th>
+        </tr>
+        <ul>
+            {% for item in rented_items %}
+            <tr>
+                <td> {{ item.rental_id }} </td>
+                <td> {{ item.item_id }} </td>
+                <td> {{ item.renter_id }} </td>
+                <td> {{ item.rentee_id }} </td>
+                <td>  {{ item.start_date }} </td>
+                <td> {{ item.end_date }} </td>
+                <td>  {{ item.returned }} </td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="item_id" value="{{ item.item_id }}">
+                        <input type="submit" value="Return">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <form action="{{ url_for('dashboard') }}">
+            <input type="submit" value="Back to Dashboard">
+        </form>
+</div>
+{% endblock %}

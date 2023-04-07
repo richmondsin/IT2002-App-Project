@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block head %}
+    <title>Register - Rentronics</title>
+{% endblock %}
+
+
+{% block body %}
+    <div style="align-items: center; justify-content: center;">
+        <h1>Register for Rentronics</h1>
+            <form method="POST">
+                <label>First Name:</label>
+                <input type="text" name="first_name" required><br><br>
+                <label>Last Name:</label>
+                <input type="text" name="last_name" required><br><br>
+                <label>Email:</label>
+                <input type="email" name="email" required><br><br>
+                <label>Phone Number:</label>
+                <input type="text" name="phone_num" required><br><br>
+                <label>Password:</label>
+                <input type="password" name="password" required><br><br>
+                <input type="submit" value="Register">
+            </form>
+            <p style="text-align: center;">Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "numericVersion": 10000,
+  "releaseNotes": "https://vscode-sqltools.mteixeira.dev/changelog#v-1-0-0",
+  "run": 1680840713565,
+  "updated": false,
+  "version": "1.0.0",
+  "lastNotificationDate": 0,
+  "installedExtPlugins": {
+    "driver": [
+      "mtxr.sqltools-driver-mysql",
+      "mtxr.sqltools-driver-pg",
+      "mtxr.sqltools-driver-sqlite"
+    ]
+  }
+}

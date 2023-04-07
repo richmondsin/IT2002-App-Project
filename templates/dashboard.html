@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+
+{% block head %}
+    <title>Rentronics Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+    <h1>Welcome to the Rentronics Dashboard: {{current_user.first_name}} {{current_user.last_name}}</h1>
+    <div class="dashboard-links">
+        <div class="dashboard-link">
+            <a href="{{ url_for('rented_items') }}">View items you are currently renting</a>
+        </div>
+        <div class="dashboard-link">
+            <a href="{{ url_for('posted_items') }}">View history for all items you've rented out</a>
+        </div>
+        <div class="dashboard-link">
+            <a href="{{ url_for('post') }}">List an item for others to rent</a>
+        </div>
+        <div class="dashboard-link">
+            <a href="{{ url_for('transactions') }}">All Transactions History</a>
+        </div>
+
+    </div>    
+    <br>
+    
+    <title>Rentable Items</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rent.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <div class = "content">
+        <h1> Available Electronics for Rent: </h1>
+        <ul> Filter by: </ul>
+        <br>
+        <form method="POST">
+            <label>name:</label>
+            <input type="text" name="name"><br>
+            <label>desc:</label>
+            <input type="text" name="description"><br>
+
+            <label>brands:</label><br>
+            <select name ="brands" id="brands">
+            <option value="none"> no preference </option>
+            {% for brand in brands %}
+                <option value="{{ brand.brand }}"> {{brand.brand}} </option>
+            {% endfor %}
+            </select><br><br>
+
+            <label>category:</label><br>
+            <select name ="category" id="category">
+            <option value="none"> no preference </option>
+            {% for cat in category %}
+                <option value="{{ cat.category }}"> {{cat.category}} </option>
+            {% endfor %}<br><br>
+            </select><br><br>
+            
+            <label>less than: $</label>
+            <input type="number" name="rate">
+            <label>per day</label><br><br>
+
+            <label>collection point:</label>
+            <input type="text" name="collection"><br>
+            <br>
+            <label>item rented less than:</label>
+            <input type="number" name="no_rents">
+            <label>times</label>
+            <br>
+            <input type="submit" value="search">
+            <input type = "reset", value= "clear filters">
+            <br>
+            <br>
+            <tr> number of listings found: {{rowcount[0][0]}} </tr>
+
+        </form>
+        <br>
+
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Latest Rating</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Rate per Day</th>
+                <th>Collection Point</th>
+                <th>Renter ID</th>
+    
+            </tr>
+            {% for item in items %}
+                <tr>
+                    <td> <a href="{{ url_for('item_details', item_id=item.item_id, user_id=user_id) }}">View More Details</a></td>
+                    <td> {{ item.item_name }} </td>
+                    <td> {{ item.description }} </td>
+                    <td> {{ item.item_rating }} </td>
+                    <td> {{ item.brand }} </td>
+                    <td>  {{ item.category }} </td>
+                    <td> {{ item.rate_per_day }} </td>
+                    <td>  {{ item.collection_point }} </td>
+                    <td>  {{ item.poster_user }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <br>
+    <form action="{{ url_for('login') }}">
+        <input type="submit" value="Log Out">
+    </form>
+{% endblock %}
